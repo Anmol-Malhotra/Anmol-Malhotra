@@ -1,21 +1,32 @@
-# 💫 About Me:
-👋 Hi, I’m Anmol Malhotra<br><br>💻 Passionate developer & problem solver who loves turning ideas into code.<br>🚀 Exploring open-source, web development, and AI/ML projects.<br>✨ Always learning, building, and sharing knowledge with the community.<br>📌 “Code. Create. Contribute.”
+<div align="center">
 
+<!-- PORTRAIT - Placeholder for your generated dot-matrix portrait (requires script setup) -->
+<img src="assets/portrait.svg" width="300" alt="Anmol Malhotra, rendered as a dot matrix">
 
-## 🌐 Socials:
-[![Facebook](https://img.shields.io/badge/Facebook-%231877F2.svg?logo=Facebook&logoColor=white)](https://facebook.com/manmol07) [![Instagram](https://img.shields.io/badge/Instagram-%23E4405F.svg?logo=Instagram&logoColor=white)](https://instagram.com/anmolmalhotra_07) [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://linkedin.com/in/anmol-malhotra-a79471379) [![X](https://img.shields.io/badge/X-black.svg?logo=X&logoColor=white)](https://x.com/m_anmol02) [![email](https://img.shields.io/badge/Email-D14836?logo=gmail&logoColor=white)](mailto:anmolmalhotra267@gmail.com) 
+<br>
 
-# 💻 Tech Stack:
-![C](https://img.shields.io/badge/c-%2300599C.svg?style=for-the-badge&logo=c&logoColor=white) ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white) ![Bash Script](https://img.shields.io/badge/bash_script-%23121011.svg?style=for-the-badge&logo=gnu-bash&logoColor=white) ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) ![MySQL](https://img.shields.io/badge/mysql-4479A1.svg?style=for-the-badge&logo=mysql&logoColor=white)
-# 📊 GitHub Stats:
-![](https://github-readme-stats.vercel.app/api?username=Anmol-Malhotra&theme=blue-green&hide_border=false&include_all_commits=true&count_private=false)<br/>
-![](https://nirzak-streak-stats.vercel.app/?user=Anmol-Malhotra&theme=blue-green&hide_border=false)<br/>
-![](https://github-readme-stats.vercel.app/api/top-langs/?username=Anmol-Malhotra&theme=blue-green&hide_border=false&include_all_commits=true&count_private=false&layout=compact)
+<!-- NAME / TAGLINE - animated typing -->
+<a href="https://github.com/Anmol-Malhotra">
+  <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=26&duration=2600&pause=900&color=39D353&center=true&vCenter=true&width=560&lines=Anmol+Malhotra;Developer+%26+Problem+Solver;Code.+Create.+Contribute." alt="typing banner">
+</a>
 
-### ✍️ Random Dev Quote
-![](https://quotes-github-readme.vercel.app/api?type=horizontal&theme=radical)
+<br>
+
+<!-- SOCIALS -->
+<a href="https://linkedin.com/in/anmol-malhotra-a79471379"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"></a>
+<a href="mailto:anmolmalhotra267@gmail.com"><img src="https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Email"></a>
+<a href="https://x.com/m_anmol02"><img src="https://img.shields.io/badge/X-000000?style=for-the-badge&logo=x&logoColor=white" alt="X"></a>
+<a href="https://instagram.com/anmolmalhotra_07"><img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white" alt="Instagram"></a>
+<a href="https://facebook.com/manmol07"><img src="https://img.shields.io/badge/Facebook-1877F2?style=for-the-badge&logo=facebook&logoColor=white" alt="Facebook"></a>
+
+<br><br>
+<img src="https://visitcount.itsvg.in/api?id=Anmol-Malhotra&icon=0&color=0" alt="profile views">
+
+</div>
 
 ---
-[![](https://visitcount.itsvg.in/api?id=Anmol-Malhotra&icon=0&color=0)](https://visitcount.itsvg.in)
 
-<!-- Proudly created with GPRM ( https://gprm.itsvg.in ) -->
+## `~/` whoami
+
+```console
+$ cat about.txt
