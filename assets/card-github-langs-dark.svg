@@ -1,7 +1,13 @@
 <svg width="460" height="200" viewBox="0 0 460 200" xmlns="http://www.w3.org/2000/svg">
 <rect x="0.5" y="0.5" rx="8" width="459" height="199" fill="#0d1117" stroke="#30363d"/>
 <text x="25" y="35" font-family="Segoe UI, sans-serif" font-size="18" font-weight="600" fill="#58a6ff">Most Used Languages</text>
-<rect x="25.0" y="55" width="410.0" height="12" rx="3" fill="#8a8a8a"/>
-<circle cx="25" cy="96" r="5" fill="#8a8a8a"/>
-<text x="39" y="100" font-family="Segoe UI, sans-serif" font-size="13" fill="#c9d1d9">N/A 100.0%</text>
+<rect x="25.0" y="55" width="351.5" height="12" rx="3" fill="#555555"/>
+<rect x="376.5" y="55" width="36.6" height="12" rx="3" fill="#3572A5"/>
+<rect x="413.1" y="55" width="21.9" height="12" rx="3" fill="#89e051"/>
+<circle cx="25" cy="96" r="5" fill="#555555"/>
+<text x="39" y="100" font-family="Segoe UI, sans-serif" font-size="13" fill="#c9d1d9">C 85.7%</text>
+<circle cx="240" cy="96" r="5" fill="#3572A5"/>
+<text x="254" y="100" font-family="Segoe UI, sans-serif" font-size="13" fill="#c9d1d9">Python 8.9%</text>
+<circle cx="25" cy="122" r="5" fill="#89e051"/>
+<text x="39" y="126" font-family="Segoe UI, sans-serif" font-size="13" fill="#c9d1d9">Shell 5.3%</text>
 </svg>
