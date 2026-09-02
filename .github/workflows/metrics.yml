@@ -45,8 +45,8 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git reset origin/main
           git add assets/*.svg
           git diff --staged --quiet || git commit -m "chore: regenerate profile assets"
-          git fetch origin main
-          git rebase origin/main
-          git push
+          git push origin HEAD:main
