@@ -30,19 +30,27 @@
 
 ---
 
-## `~/` whoami
+## `~/` About ME
 
 ```console
 $ cat about.txt
 ```
 
-Hi, I'm **Anmol Malhotra**. I'm a first-year BTech CSE student who builds things at the intersection of
-full-stack web development, computer vision, and practical tools people can actually deploy.
+<p style="text-align: center;">
+    """Programs must be written for people to read, and only incidentally for machines to execute!!!"""
+</p>
 
-- 🚀 Exploring open-source, web development, and AI/ML projects
-- 🧠 Passionate about turning ideas into working code
-- ✨ Always learning, building, and sharing knowledge with the community
-- 📌 "Code. Create. Contribute."
+
+I'm Anmol Malhotra, a second-year BTech CSE student specializing in DevOps. I work at the intersection of full-stack web development, computer vision, and infrastructure automation — building tools that are designed to actually ship, not just run in a notebook.
+
+
+-⚙️ Specializing in DevOps: CI/CD pipelines, containerization, and deployment automation
+
+-🌐 Building full-stack applications and computer vision projects with real-world use cases
+
+-🔧 Focused on practical, production-minded engineering over one-off scripts
+
+-📌 "Code. Create. Contribute."
 
 <br>
 
