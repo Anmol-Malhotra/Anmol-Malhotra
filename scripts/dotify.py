@@ -89,11 +89,15 @@ def remove_background(img: Image.Image) -> Image.Image:
     h, w = arr.shape[:2]
     mask = np.zeros((h, w), np.uint8)
     bgd, fgd = np.zeros((1, 65), np.float64), np.zeros((1, 65), np.float64)
-    rect = (int(w * 0.06), int(h * 0.02), int(w * 0.90), int(h * 0.97))
+    rect = (int(w * 0.04), int(h * 0.005), int(w * 0.93), int(h * 0.99))
     cv2.grabCut(arr, mask, rect, bgd, fgd, 10, cv2.GC_INIT_WITH_RECT)
     mask2 = np.where((mask == 2) | (mask == 0), 0, 1).astype("uint8")
     mask2 = cv2.morphologyEx(mask2, cv2.MORPH_OPEN, np.ones((5, 5), np.uint8))
     mask2 = cv2.morphologyEx(mask2, cv2.MORPH_CLOSE, np.ones((9, 9), np.uint8))
+    n, labels, stats, _ = cv2.connectedComponentsWithStats(mask2, connectivity=8)
+    if n > 1:
+        largest = 1 + np.argmax(stats[1:, cv2.CC_STAT_AREA])
+        mask2 = np.where(labels == largest, 1, 0).astype("uint8")
     alpha = cv2.GaussianBlur((mask2 * 255).astype("uint8"), (5, 5), 0)
     bgra = cv2.cvtColor(arr, cv2.COLOR_BGR2BGRA)
     bgra[:, :, 3] = alpha
