@@ -39,8 +39,9 @@ LANG_COLORS = {
 
 
 def api_get(path, token=None):
+    url = path if path.startswith("http") else API + path
     def _do(use_token):
-        req = urllib.request.Request(API + path)
+        req = urllib.request.Request(url)
         req.add_header("Accept", "application/vnd.github+json")
         if use_token and token:
             req.add_header("Authorization", f"Bearer {token}")
