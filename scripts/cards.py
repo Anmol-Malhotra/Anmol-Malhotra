@@ -19,6 +19,7 @@ import argparse
 import os
 import sys
 import urllib.request
+import urllib.error
 import json
 from collections import defaultdict
 
@@ -38,12 +39,23 @@ LANG_COLORS = {
 
 
 def api_get(path, token=None):
-    req = urllib.request.Request(API + path)
-    req.add_header("Accept", "application/vnd.github+json")
-    if token:
-        req.add_header("Authorization", f"Bearer {token}")
-    with urllib.request.urlopen(req, timeout=20) as resp:
-        return json.loads(resp.read())
+    def _do(use_token):
+        req = urllib.request.Request(API + path)
+        req.add_header("Accept", "application/vnd.github+json")
+        if use_token and token:
+            req.add_header("Authorization", f"Bearer {token}")
+        with urllib.request.urlopen(req, timeout=20) as resp:
+            return json.loads(resp.read())
+    try:
+        return _do(True)
+    except urllib.error.HTTPError as e:
+        # A workflow's GITHUB_TOKEN is scoped to the repo it runs in, so it
+        # can get "403 Resource not accessible by integration" when asked
+        # for data on the user's *other* repos. Public data doesn't need
+        # auth at all, so fall back to an anonymous request.
+        if e.code == 403 and token:
+            return _do(False)
+        raise
 
 
 def gather(username, token):
@@ -69,7 +81,8 @@ def gather(username, token):
             langs = api_get(r["languages_url"], token)
             for lang, n in langs.items():
                 lang_bytes[lang] += n
-        except Exception:
+        except Exception as e:
+            print(f"warning: could not fetch languages for {r.get('name')}: {e}", file=sys.stderr)
             continue
 
     return {
