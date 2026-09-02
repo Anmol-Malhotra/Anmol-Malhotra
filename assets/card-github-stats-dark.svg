@@ -3,14 +3,14 @@
 <text x="25" y="35" font-family="Segoe UI, sans-serif" font-size="18" font-weight="600" fill="#58a6ff">Anmol-Malhotra's GitHub Stats</text>
 <circle cx="30" cy="65" r="5" fill="#39D353"/>
 <text x="45" y="70" font-family="Segoe UI, sans-serif" font-size="14" fill="#c9d1d9">Public Repos:</text>
-<text x="220" y="70" font-family="Segoe UI, sans-serif" font-size="14" font-weight="600" fill="#c9d1d9">-</text>
+<text x="220" y="70" font-family="Segoe UI, sans-serif" font-size="14" font-weight="600" fill="#c9d1d9">8</text>
 <circle cx="30" cy="95" r="5" fill="#39D353"/>
 <text x="45" y="100" font-family="Segoe UI, sans-serif" font-size="14" fill="#c9d1d9">Total Stars:</text>
-<text x="220" y="100" font-family="Segoe UI, sans-serif" font-size="14" font-weight="600" fill="#c9d1d9">-</text>
+<text x="220" y="100" font-family="Segoe UI, sans-serif" font-size="14" font-weight="600" fill="#c9d1d9">0</text>
 <circle cx="30" cy="125" r="5" fill="#39D353"/>
 <text x="45" y="130" font-family="Segoe UI, sans-serif" font-size="14" fill="#c9d1d9">Total Forks:</text>
-<text x="220" y="130" font-family="Segoe UI, sans-serif" font-size="14" font-weight="600" fill="#c9d1d9">-</text>
+<text x="220" y="130" font-family="Segoe UI, sans-serif" font-size="14" font-weight="600" fill="#c9d1d9">1</text>
 <circle cx="30" cy="155" r="5" fill="#39D353"/>
 <text x="45" y="160" font-family="Segoe UI, sans-serif" font-size="14" fill="#c9d1d9">Followers:</text>
-<text x="220" y="160" font-family="Segoe UI, sans-serif" font-size="14" font-weight="600" fill="#c9d1d9">-</text>
+<text x="220" y="160" font-family="Segoe UI, sans-serif" font-size="14" font-weight="600" fill="#c9d1d9">0</text>
 </svg>
