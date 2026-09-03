@@ -15,11 +15,13 @@ import numpy as np
 
 
 def build_svg(img: Image.Image, cols: int, detail: float, color: bool, animate: bool = False,
-              darken: float = 1.0, dot_color_override=None):
+              darken: float = 1.0, floor: float = 0.0, dot_color_override=None):
     """
     img: RGBA image (alpha=0 means "no subject here" -> no dot drawn, enables
     a transparent/removed background).
     darken: <1.0 makes dot colors darker/more saturated (fixes a washed-out look).
+    floor: minimum per-channel brightness (0-255) so very dark clothing/hair
+    doesn't disappear into a dark card background.
     animate: adds a CSS reveal so dots fade/scale in top row first, matching
     a top-to-bottom sweep over the subject.
     """
@@ -38,6 +40,8 @@ def build_svg(img: Image.Image, cols: int, detail: float, color: bool, animate: 
         # darken + boost contrast so it isn't washed out
         arr = np.clip(arr * darken, 0, 255)
         arr = np.clip((arr - 127.5) * 1.15 + 127.5 * darken, 0, 255)
+        if floor > 0:
+            arr = floor + arr * (255 - floor) / 255
 
     gamma = 0.7
     weight = np.power(1 - gray, gamma)
@@ -83,26 +87,19 @@ circle{animation:dotIn 0.5s ease-out both;}
 
 
 def remove_background(img: Image.Image) -> Image.Image:
-    """Cut the subject out using GrabCut so background dots aren't drawn."""
-    import cv2
-    arr = np.array(img.convert("RGB"))[:, :, ::-1].copy()  # RGB -> BGR for cv2
-    h, w = arr.shape[:2]
-    mask = np.zeros((h, w), np.uint8)
-    bgd, fgd = np.zeros((1, 65), np.float64), np.zeros((1, 65), np.float64)
-    rect = (int(w * 0.04), int(h * 0.005), int(w * 0.93), int(h * 0.99))
-    cv2.grabCut(arr, mask, rect, bgd, fgd, 10, cv2.GC_INIT_WITH_RECT)
-    mask2 = np.where((mask == 2) | (mask == 0), 0, 1).astype("uint8")
-    mask2 = cv2.morphologyEx(mask2, cv2.MORPH_OPEN, np.ones((5, 5), np.uint8))
-    mask2 = cv2.morphologyEx(mask2, cv2.MORPH_CLOSE, np.ones((9, 9), np.uint8))
-    n, labels, stats, _ = cv2.connectedComponentsWithStats(mask2, connectivity=8)
-    if n > 1:
-        largest = 1 + np.argmax(stats[1:, cv2.CC_STAT_AREA])
-        mask2 = np.where(labels == largest, 1, 0).astype("uint8")
-    alpha = cv2.GaussianBlur((mask2 * 255).astype("uint8"), (5, 5), 0)
-    bgra = cv2.cvtColor(arr, cv2.COLOR_BGR2BGRA)
-    bgra[:, :, 3] = alpha
-    rgba = bgra[:, :, [2, 1, 0, 3]]  # BGRA -> RGBA
-    return Image.fromarray(rgba, "RGBA")
+    """Cut the subject out with a U^2-Net segmentation model (rembg) -- far more
+    robust on cluttered backgrounds than plain color-based GrabCut."""
+    from rembg import remove, new_session
+    session = new_session("u2net")
+    w0, h0 = img.size
+    scale = min(1.0, 900 / w0)
+    small = img.resize((max(1, int(w0 * scale)), max(1, int(h0 * scale))), Image.LANCZOS)
+    out_small = remove(small.convert("RGB"), session=session)
+    alpha_small = out_small.split()[-1]
+    alpha_full = alpha_small.resize((w0, h0), Image.LANCZOS)
+    rgba = img.convert("RGBA")
+    rgba.putalpha(alpha_full)
+    return rgba
 
 
 def main():
@@ -115,6 +112,7 @@ def main():
     ap.add_argument("--color", action="store_true")
     ap.add_argument("--remove-bg", action="store_true", help="cut out the subject with GrabCut")
     ap.add_argument("--darken", type=float, default=1.0, help="<1.0 darkens dot colors")
+    ap.add_argument("--floor", type=float, default=0.0, help="min dot brightness 0-255, keeps dark clothing visible")
     ap.add_argument("--animate", action="store_true", help="add a top-to-bottom reveal animation")
     args = ap.parse_args()
 
@@ -125,11 +123,11 @@ def main():
     if args.remove_bg:
         img = remove_background(img)
 
-    dark_svg = build_svg(img, args.cols, args.detail, args.color, args.animate, args.darken)
+    dark_svg = build_svg(img, args.cols, args.detail, args.color, args.animate, args.darken, args.floor)
     with open(f"{args.out}-dark.svg", "w") as f:
         f.write(dark_svg)
 
-    light_svg = build_svg(img, args.cols, args.detail, args.color, args.animate, args.darken)
+    light_svg = build_svg(img, args.cols, args.detail, args.color, args.animate, args.darken, args.floor)
     with open(f"{args.out}-light.svg", "w") as f:
         f.write(light_svg)
 
