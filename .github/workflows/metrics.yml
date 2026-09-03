@@ -24,7 +24,7 @@ jobs:
           python-version: "3.11"
 
       - name: Install dependencies
-        run: pip install pillow numpy matplotlib opencv-python-headless
+        run: pip install pillow numpy matplotlib rembg onnxruntime
 
       - name: Build skill radar
         run: python scripts/radar.py assets/skills.json -o assets/radar
@@ -33,7 +33,7 @@ jobs:
         run: |
           if ls assets/portrait_source.* >/dev/null 2>&1; then
             src=$(ls assets/portrait_source.* | head -n1)
-            python scripts/dotify.py "$src" -o assets/portrait --cols 85 --detail 0.55 --color --remove-bg --darken 0.82 --animate
+            python scripts/dotify.py "$src" -o assets/portrait --cols 140 --detail 0.6 --color --remove-bg --darken 0.95 --floor 35 --animate
           fi
 
       - name: Build self-hosted GitHub stats + language cards
