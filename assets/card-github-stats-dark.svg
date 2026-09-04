@@ -3,7 +3,7 @@
 <text x="25" y="35" font-family="Segoe UI, sans-serif" font-size="18" font-weight="600" fill="#58a6ff">Anmol-Malhotra's GitHub Stats</text>
 <circle cx="30" cy="65" r="5" fill="#39D353"/>
 <text x="45" y="70" font-family="Segoe UI, sans-serif" font-size="14" fill="#c9d1d9">Public Repos:</text>
-<text x="220" y="70" font-family="Segoe UI, sans-serif" font-size="14" font-weight="600" fill="#c9d1d9">8</text>
+<text x="220" y="70" font-family="Segoe UI, sans-serif" font-size="14" font-weight="600" fill="#c9d1d9">9</text>
 <circle cx="30" cy="95" r="5" fill="#39D353"/>
 <text x="45" y="100" font-family="Segoe UI, sans-serif" font-size="14" fill="#c9d1d9">Total Stars:</text>
 <text x="220" y="100" font-family="Segoe UI, sans-serif" font-size="14" font-weight="600" fill="#c9d1d9">0</text>
