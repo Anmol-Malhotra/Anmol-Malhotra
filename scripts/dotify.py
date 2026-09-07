@@ -113,6 +113,8 @@ def main():
     ap.add_argument("--remove-bg", action="store_true", help="cut out the subject with GrabCut")
     ap.add_argument("--darken", type=float, default=1.0, help="<1.0 darkens dot colors")
     ap.add_argument("--floor", type=float, default=0.0, help="min dot brightness 0-255, keeps dark clothing visible")
+    ap.add_argument("--brightness", type=float, default=1.0, help="1.0=unchanged, >1.0 brightens the source photo")
+    ap.add_argument("--contrast", type=float, default=1.0, help="1.0=unchanged, >1.0 increases contrast")
     ap.add_argument("--animate", action="store_true", help="add a top-to-bottom reveal animation")
     args = ap.parse_args()
 
@@ -122,6 +124,14 @@ def main():
     img = img.convert("RGBA")
     if args.remove_bg:
         img = remove_background(img)
+
+    if args.brightness != 1.0 or args.contrast != 1.0:
+        from PIL import ImageEnhance
+        rgb = img.convert("RGB")
+        rgb = ImageEnhance.Brightness(rgb).enhance(args.brightness)
+        rgb = ImageEnhance.Contrast(rgb).enhance(args.contrast)
+        rgb.putalpha(img.split()[-1])
+        img = rgb
 
     dark_svg = build_svg(img, args.cols, args.detail, args.color, args.animate, args.darken, args.floor)
     with open(f"{args.out}-dark.svg", "w") as f:
