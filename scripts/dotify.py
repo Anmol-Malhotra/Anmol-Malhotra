@@ -90,13 +90,22 @@ def remove_background(img: Image.Image) -> Image.Image:
     """Cut the subject out with a U^2-Net segmentation model (rembg) -- far more
     robust on cluttered backgrounds than plain color-based GrabCut."""
     from rembg import remove, new_session
+    from scipy.ndimage import binary_fill_holes, binary_closing
     session = new_session("u2net")
     w0, h0 = img.size
     scale = min(1.0, 900 / w0)
     small = img.resize((max(1, int(w0 * scale)), max(1, int(h0 * scale))), Image.LANCZOS)
     out_small = remove(small.convert("RGB"), session=session)
-    alpha_small = out_small.split()[-1]
-    alpha_full = alpha_small.resize((w0, h0), Image.LANCZOS)
+    alpha_small = np.array(out_small.split()[-1])
+
+    # Fill any interior holes (e.g. glasses-lens reflections getting
+    # misread as background) so they don't punch gaps through the face/body.
+    binary = alpha_small > 60
+    filled = binary_closing(binary, structure=np.ones((9, 9)))
+    filled = binary_fill_holes(filled)
+    alpha_small = np.where(filled, np.maximum(alpha_small, 235), alpha_small).astype("uint8")
+
+    alpha_full = Image.fromarray(alpha_small).resize((w0, h0), Image.LANCZOS)
     rgba = img.convert("RGBA")
     rgba.putalpha(alpha_full)
     return rgba
