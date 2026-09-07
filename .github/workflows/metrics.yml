@@ -33,7 +33,7 @@ jobs:
         run: |
           if ls assets/portrait_source.* >/dev/null 2>&1; then
             src=$(ls assets/portrait_source.* | head -n1)
-            python scripts/dotify.py "$src" -o assets/portrait --cols 140 --detail 0.6 --color --remove-bg --darken 0.95 --floor 35 --animate
+            python scripts/dotify.py "$src" -o assets/portrait --cols 120 --detail 0.6 --color --remove-bg --darken 1.0 --floor 45 --brightness 1.35 --contrast 1.2 --animate
           fi
 
       - name: Build self-hosted GitHub stats + language cards
