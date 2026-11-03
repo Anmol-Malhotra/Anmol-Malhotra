@@ -9,7 +9,7 @@
 <text x="220" y="100" font-family="Segoe UI, sans-serif" font-size="14" font-weight="600" fill="#24292f">0</text>
 <circle cx="30" cy="125" r="5" fill="#1f7a3f"/>
 <text x="45" y="130" font-family="Segoe UI, sans-serif" font-size="14" fill="#24292f">Total Forks:</text>
-<text x="220" y="130" font-family="Segoe UI, sans-serif" font-size="14" font-weight="600" fill="#24292f">1</text>
+<text x="220" y="130" font-family="Segoe UI, sans-serif" font-size="14" font-weight="600" fill="#24292f">2</text>
 <circle cx="30" cy="155" r="5" fill="#1f7a3f"/>
 <text x="45" y="160" font-family="Segoe UI, sans-serif" font-size="14" fill="#24292f">Followers:</text>
 <text x="220" y="160" font-family="Segoe UI, sans-serif" font-size="14" font-weight="600" fill="#24292f">0</text>
